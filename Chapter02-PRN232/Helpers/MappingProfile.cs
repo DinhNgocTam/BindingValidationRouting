@@ -2,6 +2,8 @@
 {
     using AutoMapper;
     using BusinessObjects;
+    using DataAccess.Company;
+    using DataAccess.Employee;
     using DataAccess.Player;
     using DataAccess.PlayerInstrument;
 
@@ -12,8 +14,6 @@
             CreateMap<UpdatePlayerRequest, Player>();
 
             CreateMap<CreatePlayerRequest, Player>();
-            //.ForMember(dest => dest.PlayerInstruments, opt => opt.MapFrom(src => src.PlayerInstruments));
-
 
             CreateMap<CreatePlayerInstrumentRequest, PlayerInstrument>();
 
@@ -26,9 +26,26 @@
             CreateMap<Player, GetPlayerDetailResponse>();
 
             CreateMap<PlayerInstrument, GetPlayerInstrumentResponse>();
-            //.ForMember(dest => dest.InstrumentTypeName, opt => opt.MapFrom(src => src.InstrumentType.Name))
-            //.ForMember(dest => dest.ModelName, opt => opt.MapFrom(src => src.ModelName))
-            //.ForMember(dest => dest.Level, opt => opt.MapFrom(src => src.Level));
+
+
+
+
+
+            //Mapping for Company
+            CreateMap<Company, CompanyDto>()
+                .ForMember(
+                    c => c.FullAddress,
+                    opt => opt.MapFrom(x => string.Join(' ', x.Address, x.Country))
+                );
+
+            CreateMap<CompanyForUpdateDto, Company>();
+            CreateMap<CompanyForCreationDto, Company>();
+
+
+            //Mapping for Employee
+            CreateMap<Employee, EmployeeDto>();
+            CreateMap<EmployeeForCreationDto, Employee>();
+            CreateMap<EmployeeForUpdateDto, Employee>().ReverseMap();
         }
     }
 }
