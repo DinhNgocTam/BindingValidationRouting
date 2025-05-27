@@ -15,7 +15,7 @@ namespace BusinessObjects
         public DbSet<Player> Players { get; set; }
         public DbSet<InstrumentType> InstrumentTypes { get; set; }
         public DbSet<PlayerInstrument> PlayerInstruments { get; set; }
-
+        public DbSet<Gadgets> Gadgets { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

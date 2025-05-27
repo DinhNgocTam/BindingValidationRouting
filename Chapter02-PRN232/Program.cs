@@ -1,5 +1,6 @@
 using BusinessObjects;
 using Chapter02_PRN232.Helpers;
+using Microsoft.AspNetCore.OData;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Implements;
 using Repositories.Interfaces;
@@ -32,6 +33,8 @@ namespace Chapter02_PRN232
             {
                 options.ReturnHttpNotAcceptable = true;
             });
+
+            builder.Services.AddControllers().AddOData(options => options.Select().Filter().Count().OrderBy().Expand().SetMaxTop(100).AddRouteComponents("gadgets", GetEdmModel.GetModel()));
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

@@ -49,6 +49,33 @@ namespace BusinessObjects
                     CompanyId = company2Id
                 }
             );
+            // Seed data for Gadgets
+            modelBuilder.Entity<Gadgets>().HasData(
+                new Gadgets
+                {
+                    Id = 1,
+                    ProductName = "Smartphone X1",
+                    Brand = "BrandA",
+                    Cost = 499.99m,
+                    Type = "Smartphone"
+                },
+                new Gadgets
+                {
+                    Id = 2,
+                    ProductName = "Laptop Pro 15",
+                    Brand = "BrandB",
+                    Cost = 1299.00m,
+                    Type = "Laptop"
+                },
+                new Gadgets
+                {
+                    Id = 3,
+                    ProductName = "Wireless Earbuds",
+                    Brand = "BrandC",
+                    Cost = 99.99m,
+                    Type = "Audio"
+                }
+            );
         }
     }
 }
